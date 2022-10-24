@@ -231,6 +231,15 @@ public class UserController {
 		
 		System.out.println("The username is "+username+", the password is "+password);
 		
+		if(username.equals("") || password.equals("")) {//This would return the index or login page back to user if either username or
+														//password or both are incorrect...
+			
+			ModelAndView modelAndView = new ModelAndView("index");
+			modelAndView.addObject("loginErrorMessage", "Please do Not submit empty fields!!");
+			
+			return modelAndView;
+		}
+		
 		UserService userService = new UserService();
 		
 		User user = userService.validateUser(username, password);
