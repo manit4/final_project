@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cohart.db.DBUtils;
 import com.cohart.repository.UserRepository;
+import com.cohart.service.UserService;
+import com.cohart.to.User;
 
 @Controller
 public class UserController {
@@ -101,13 +103,77 @@ public class UserController {
 //		}	
 //	}
 	
+//	@RequestMapping(value = "/register", method = RequestMethod.POST)
+//	public String register(String username, String password, String firstName, String lastName, String email) throws Exception {
+//		System.out.println("inside register method.."+username+", "+password+", "+firstName+", "+lastName+", "+email);
+//		
+//		UserRepository userRepository = new UserRepository();
+//		
+//		userRepository.save(username, password, firstName, lastName, email);
+//		
+//		return "index";
+//	}
+//	
+//	@RequestMapping("/login")
+//	public String login(String username, String password) throws Exception {
+//		
+//		System.out.println("The username is "+username+", the password is "+password);
+//		
+//		UserRepository userRepository = new UserRepository();
+//		
+//		boolean validatedUserStatus = userRepository.validateUserCredentials(username, password);
+//		
+//		if(validatedUserStatus == true) {
+//			return "welcomePage";
+//		}
+//		else {
+//			return "index";
+//		}	
+//	}
+	
+//	@RequestMapping(value = "/register", method = RequestMethod.POST)
+//	public String register(String username, String password, String firstName, String lastName, String email) throws Exception {
+//		System.out.println("inside register method.."+username+", "+password+", "+firstName+", "+lastName+", "+email);
+//		
+//		UserRepository userRepository = new UserRepository();
+//		
+//		User user = new User(username, password, firstName, lastName, email);
+//		
+//		userRepository.save(user);
+//		
+//		//userRepository.save(username, password, firstName, lastName, email);
+//		
+//		return "index";
+//	}
+//	
+//	@RequestMapping("/login")
+//	public String login(String username, String password) throws Exception {
+//		
+//		System.out.println("The username is "+username+", the password is "+password);
+//		
+//		UserRepository userRepository = new UserRepository();
+//		
+//		boolean validatedUserStatus = userRepository.validateUserCredentials(username, password);
+//		
+//		if(validatedUserStatus == true) {
+//			return "welcomePage";
+//		}
+//		else {
+//			return "index";
+//		}	
+//	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(String username, String password, String firstName, String lastName, String email) throws Exception {
 		System.out.println("inside register method.."+username+", "+password+", "+firstName+", "+lastName+", "+email);
 		
 		UserRepository userRepository = new UserRepository();
 		
-		userRepository.save(username, password, firstName, lastName, email);
+		User user = new User(username, password, firstName, lastName, email);
+		
+		userRepository.save(user);
+		
+		//userRepository.save(username, password, firstName, lastName, email);
 		
 		return "index";
 	}
@@ -117,17 +183,16 @@ public class UserController {
 		
 		System.out.println("The username is "+username+", the password is "+password);
 		
-		UserRepository userRepository = new UserRepository();
+		UserService userService = new UserService();
 		
-		boolean loginStatus = userRepository.getUser(username, password);
-		
-		if(loginStatus == true) {
+		boolean validatedUserStatus = userService.validateUser(username, password);
+				
+		if(validatedUserStatus == true) {
 			return "welcomePage";
 		}
 		else {
 			return "index";
-		}
-		
+		}	
 	}
 	
 }
