@@ -24,23 +24,23 @@ public class UserRepository {
 //		pstmt.execute();
 //	}
 	
-	public boolean validateUserCredentials(String username, String password) throws Exception {
-		
-		boolean loginStatus = false;
-		
-		Connection conn = DBUtils.getConnection();	
-		PreparedStatement pstmt =  conn.prepareStatement("select * from user where username = ? and password = ?");
-		
-		pstmt.setString(1, username);
-		pstmt.setString(2, password);
-		
-		ResultSet rs = pstmt.executeQuery();
-		
-		if(rs.next()) {
-			loginStatus = true;
-		}
-		return loginStatus;
-	}
+//	public boolean validateUserCredentials(String username, String password) throws Exception {
+//		
+//		boolean loginStatus = false;
+//		
+//		Connection conn = DBUtils.getConnection();	
+//		PreparedStatement pstmt =  conn.prepareStatement("select * from user where username = ? and password = ?");
+//		
+//		pstmt.setString(1, username);
+//		pstmt.setString(2, password);
+//		
+//		ResultSet rs = pstmt.executeQuery();
+//		
+//		if(rs.next()) {
+//			loginStatus = true;
+//		}
+//		return loginStatus;
+//	}
 
 	public void save(User user) throws Exception {
 
@@ -55,5 +55,44 @@ public class UserRepository {
 		pstmt.setString(5, user.getEmail());
 
 		pstmt.execute();
+	}
+	
+public User validateUserCredentials(String username, String password) throws Exception {
+		
+		//boolean loginStatus = false;
+		User user = null;
+		
+		Connection conn = DBUtils.getConnection();	
+		PreparedStatement pstmt =  conn.prepareStatement("select * from user where username = ? and password = ?");
+		
+		pstmt.setString(1, username);
+		pstmt.setString(2, password);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+//		if(rs.next()) {
+//			loginStatus = true;
+//		}
+//		if(rs.next()) {
+//			String uname = rs.getString(1);
+//			String pwd = rs.getString(2);
+//			String fName = rs.getString(3);
+//			String lName =rs.getString(4);
+//			String emailAddress = rs.getString(5);
+//			
+//			user = new User(uname, password, fName, lName, emailAddress);
+//		}
+		
+		if(rs.next()) {
+			username = rs.getString(1);
+			password = rs.getString(2);
+			String fName = rs.getString(3);
+			String lName =rs.getString(4);
+			String emailAddress = rs.getString(5);
+			
+			user = new User(username, password, fName, lName, emailAddress);
+		}
+		
+		return user;
 	}
 }

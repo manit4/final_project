@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cohart.db.DBUtils;
 import com.cohart.repository.UserRepository;
@@ -178,21 +179,89 @@ public class UserController {
 		return "index";
 	}
 	
+//	@RequestMapping("/login")
+//	public String login(String username, String password) throws Exception {
+//		
+//		System.out.println("The username is "+username+", the password is "+password);
+//		
+//		UserService userService = new UserService();
+//		
+//		boolean validatedUserStatus = userService.validateUser(username, password);
+//		
+//		int i = 4;   int j = 5;
+//				
+//		if(validatedUserStatus == true) {
+//			return "welcomePage";
+//		}
+//		else {
+//			return "index";
+//		}	
+//	}
+	
+//	@RequestMapping("/login")
+//	public ModelAndView login(String username, String password) throws Exception {
+//		
+//		System.out.println("The username is "+username+", the password is "+password);
+//		
+//		UserService userService = new UserService();
+//		
+//		boolean validatedUserStatus = userService.validateUser(username, password);
+//		
+//		int i = 4;   int j = 5;
+//				
+//		if(validatedUserStatus == true) {
+//			
+//			ModelAndView modelAndView = new ModelAndView("welcomePage");
+//			
+//			modelAndView.addObject("value1", i);
+//			modelAndView.addObject("value2", j);
+//			
+//			return modelAndView;
+//		}
+//		else {
+//			ModelAndView modelAndView = new ModelAndView("index");
+//			modelAndView.addObject("loginErrorMessage", "Incorrect Credentials, please try again!!");
+//			
+//			return modelAndView;
+//		}	
+//	}
+	
 	@RequestMapping("/login")
-	public String login(String username, String password) throws Exception {
+	public ModelAndView login(String username, String password) throws Exception {
 		
 		System.out.println("The username is "+username+", the password is "+password);
 		
 		UserService userService = new UserService();
 		
-		boolean validatedUserStatus = userService.validateUser(username, password);
-				
-		if(validatedUserStatus == true) {
-			return "welcomePage";
+		User user = userService.validateUser(username, password);
+		
+		if(user != null) {
+			
+			ModelAndView modelAndView = new ModelAndView("welcomePage");
+			modelAndView.addObject("userData", user);
+			return modelAndView;
 		}
 		else {
-			return "index";
-		}	
+		ModelAndView modelAndView = new ModelAndView("index");
+		modelAndView.addObject("loginErrorMessage", "Incorrect Credentials, please try again!!");
+		
+		return modelAndView;
+	}
+		
+		
+				
+//		if(validatedUserStatus == true) {
+//			
+//			ModelAndView modelAndView = new ModelAndView("welcomePage");
+//			
+//			return modelAndView;
+//		}
+//		else {
+//			ModelAndView modelAndView = new ModelAndView("index");
+//			modelAndView.addObject("loginErrorMessage", "Incorrect Credentials, please try again!!");
+//			
+//			return modelAndView;
+//		}	
 	}
 	
 }

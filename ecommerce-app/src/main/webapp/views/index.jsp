@@ -12,11 +12,14 @@
 	crossorigin="anonymous">
 
 </head>
+
+
 <body>
 	<form action="login" method="post">
 		<h3 style="margin-left: 400px; color: Blue; margin-top: 50px">This
 			is Cohart20 Ecommerce Application</h3>
 		<div style="margin-left: 450px; margin-right: 450px">
+			<h4 style="color: red ">${loginErrorMessage }</h4>
 			<div class="mb-3">
 				<label for="exampleInputEmail1" class="form-label">Username</label>
 				<input type="text" class="form-control" id="exampleInputEmail1"
