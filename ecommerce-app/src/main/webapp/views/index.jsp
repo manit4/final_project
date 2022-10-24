@@ -13,21 +13,21 @@
 
 </head>
 <body>
-	<form>
+	<form action="login" method="post">
 		<h3 style="margin-left: 400px; color: Blue; margin-top: 50px">This
 			is Cohart20 Ecommerce Application</h3>
 		<div style="margin-left: 450px; margin-right: 450px">
 			<div class="mb-3">
 				<label for="exampleInputEmail1" class="form-label">Username</label>
-				<input type="email" class="form-control" id="exampleInputEmail1"
-					aria-describedby="emailHelp">
+				<input type="text" class="form-control" id="exampleInputEmail1"
+					aria-describedby="emailHelp" name="username">
 			</div>
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Password</label>
 				<input type="password" class="form-control"
-					id="exampleInputPassword1">
+					id="exampleInputPassword1" name="password">
 			</div>
-			<button style="margin-left: 160px" type="submit" class="btn btn-primary">Submit</button><br><br>
+			<button style="margin-left: 160px" type="submit" class="btn btn-primary">Login</button><br><br>
 			<a style="margin-left: 100px" href="registrationPage">New User? Register Here!!</a>
 			
 		</div>
