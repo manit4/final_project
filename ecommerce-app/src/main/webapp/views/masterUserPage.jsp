@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.util.*, com.cohart.to.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,9 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
+<% List<User> users = (List<User>)request.getAttribute("allUsers"); %>
+
 <br>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -49,35 +53,29 @@
   <a class="nav-link" href="#">Product</a>
 </nav>
 
-<h3>No of Users Present: ${allUsers.size() }</h3>
+<h3>No of Users Present: <%=users.size() %></h3>
 
 <table class="table table-success table-striped">
    <thead>
+  
+   
     <tr>
       <th scope="col">Username</th>
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col">Email</th>
     </tr>
+    
   </thead>
   <tbody>
+   <% for(int i = 0; i < users.size(); i++) { %>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td><%= users.get(i).getUsername()%></td>
+      <td><%= users.get(i).getFirstName() %></td>
+      <td><%= users.get(i).getLastName() %></td>
+      <td><%= users.get(i).getEmail() %></td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    <%} %>
   </tbody>
 </table>
 
