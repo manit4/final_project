@@ -3,6 +3,8 @@ package com.cohart.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cohart.db.DBUtils;
 import com.cohart.to.User;
@@ -95,4 +97,30 @@ public User validateUserCredentials(String username, String password) throws Exc
 		
 		return user;
 	}
+
+	public List<User> getUsers() throws Exception {
+		
+		List<User> users = new ArrayList<User>();
+		
+		Connection conn = DBUtils.getConnection();	
+		PreparedStatement pstmt =  conn.prepareStatement("select * from user");
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			
+			String username = rs.getString(1);
+			String password = rs.getString(2);
+			String fName = rs.getString(3);
+			String lName =rs.getString(4);
+			String emailAddress = rs.getString(5);
+			
+			User user = new User(username, password, fName, lName, emailAddress);
+			users.add(user);
+		}
+		
+		return users;
+		
+	}
+
 }

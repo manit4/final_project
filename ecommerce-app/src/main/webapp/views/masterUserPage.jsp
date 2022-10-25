@@ -5,13 +5,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-
 </head>
 <body>
 <br>
@@ -46,10 +44,15 @@
   </div>
 </nav><br>
 
-<h3 style="margin-left: 200px; font-style: italic;">Welcome ${userData.getFirstName() } ${userData.getLastName() }</h3><br>
+<nav class="nav flex-column">
+  <a class="nav-link" aria-current="page" href="masterUser">User</a>
+  <a class="nav-link" href="#">Product</a>
+</nav>
+
+<h3>No of Users Present: ${allUsers.size() }</h3>
 
 <table class="table table-success table-striped">
-  <thead>
+   <thead>
     <tr>
       <th scope="col">Username</th>
       <th scope="col">First Name</th>
@@ -59,17 +62,26 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">${userData.getUsername() }</th>
-      <td>${userData.getFirstName() }</td>
-      <td>${userData.getLastName() }</td>
-      <td>${userData.getEmail() }</td>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
     </tr>
   </tbody>
 </table>
 
-
-
-<div style="margin-top: 400px; margin-left: 50px">
+<div style="margin-top: 350px; margin-left: 50px">
 
 
 </div>

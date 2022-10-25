@@ -1,5 +1,7 @@
 package com.cohart.service;
 
+import java.util.List;
+
 import com.cohart.repository.UserRepository;
 import com.cohart.to.User;
 
@@ -21,6 +23,15 @@ public class UserService {
 		User user = userRepository.validateUserCredentials(username, password);
 		
 		return user;
+	}
+	
+	public List<User> getAllUsers() throws Exception {
+		
+		UserRepository userDao = new UserRepository();
+		
+		List<User> users = userDao.getUsers();
+		
+		return users;
 	}
 	
 }
